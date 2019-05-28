@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.mybatis.parent
+Bnd-LastModified: 1559013156497
+Build-Jdk: 1.8.0_201
+Built-By: 74701
+Bundle-Description: Tests for the Java DOM classes.  Generates Java clas
+ ses and fails if the classes won't compile.
+Bundle-DocURL: http://www.mybatis.org/mybatis-generator/mybatis-generato
+ r-systests-domtests/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: MyBatis Generator Tests (Java DOM Tests)
+Bundle-SymbolicName: org.mybatis.generator.mybatis-generator-systests-do
+ mtests
+Bundle-Vendor: MyBatis.org
+Bundle-Version: 1.4.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Implementation-Build-Date: 2019-05-28 03:12:07+0000
+Implementation-Title: MyBatis Generator Tests (Java DOM Tests)
+Implementation-URL: http://www.mybatis.org/mybatis-generator/mybatis-gen
+ erator-systests-domtests/
+Implementation-Vendor: MyBatis.org
+Implementation-Vendor-Id: org.mybatis.generator
+Implementation-Version: 1.4.0-SNAPSHOT
+Import-Package: org.mybatis.generator.api.dom,org.mybatis.generator.api.
+ dom.java,org.mybatis.generator.internal.util,org.reflections,org.reflec
+ tions.scanners
+Include-Resource: META-INF/LICENSE=LICENSE,META-INF/NOTICE=NOTICE
+Private-Package: mbg.domtest,mbg.domtest.generators.fieldtype1,mbg.domte
+ st.generators.simple.interfaze,mbg.domtest.generators.supers
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: MyBatis Generator Tests (Java DOM Tests)
+Specification-Vendor: MyBatis.org
+Specification-Version: 1.4.0-SNAPSHOT
+Tool: Bnd-4.1.0.201810181252
+X-Compile-Source-JDK: 1.8
+X-Compile-Target-JDK: 1.8

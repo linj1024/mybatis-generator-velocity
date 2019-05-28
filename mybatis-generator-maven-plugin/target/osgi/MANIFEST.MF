@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.mybatis.generator.maven.plugin
+Bnd-LastModified: 1559013161008
+Build-Jdk: 1.8.0_201
+Built-By: 74701
+Bundle-Description: Maven plugin for MyBatis Generator.
+Bundle-DocURL: http://www.mybatis.org/mybatis-generator/mybatis-generato
+ r-maven-plugin/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: MyBatis Generator Maven Plugin
+Bundle-SymbolicName: org.mybatis.generator.mybatis-generator-maven-plugi
+ n
+Bundle-Vendor: MyBatis.org
+Bundle-Version: 1.4.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.mybatis.generator.maven;version="1.4.0.SNAPSHOT"
+Implementation-Build-Date: 2019-05-28 03:12:07+0000
+Implementation-Title: MyBatis Generator Maven Plugin
+Implementation-URL: http://www.mybatis.org/mybatis-generator/mybatis-gen
+ erator-maven-plugin/
+Implementation-Vendor: MyBatis.org
+Implementation-Vendor-Id: org.mybatis.generator
+Implementation-Version: 1.4.0-SNAPSHOT
+Import-Package: javax.xml.parsers,org.apache.maven.artifact,org.apache.m
+ aven.model,org.apache.maven.plugin,org.apache.maven.plugin.logging,org.
+ apache.maven.project,org.mybatis.generator.api,org.mybatis.generator.co
+ nfig,org.mybatis.generator.config.xml,org.mybatis.generator.exception,o
+ rg.mybatis.generator.internal,org.mybatis.generator.internal.util,org.m
+ ybatis.generator.internal.util.messages,org.mybatis.generator.logging,o
+ rg.w3c.dom,org.xml.sax
+Include-Resource: META-INF/LICENSE=LICENSE,META-INF/NOTICE=NOTICE
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: MyBatis Generator Maven Plugin
+Specification-Vendor: MyBatis.org
+Specification-Version: 1.4.0-SNAPSHOT
+Tool: Bnd-4.1.0.201810181252
+X-Compile-Source-JDK: 1.8
+X-Compile-Target-JDK: 1.8
