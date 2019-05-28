@@ -1,0 +1,82 @@
+.factorypath
+
+# /
+/.project
+/.settings
+/build.log
+/target
+
+# /mybatis-generator-core/
+/mybatis-generator-core/.classpath
+/mybatis-generator-core/.project
+/mybatis-generator-core/.settings
+/mybatis-generator-core/target
+
+# /mybatis-generator-maven-plugin/
+/mybatis-generator-maven-plugin/.classpath
+/mybatis-generator-maven-plugin/.project
+/mybatis-generator-maven-plugin/.settings
+/mybatis-generator-maven-plugin/target
+
+# /mybatis-generator-systests-common/
+/mybatis-generator-systests-common/.classpath
+/mybatis-generator-systests-common/.project
+/mybatis-generator-systests-common/.settings
+/mybatis-generator-systests-common/target
+
+# /mybatis-generator-systests-mybatis3/
+/mybatis-generator-systests-mybatis3/.classpath
+/mybatis-generator-systests-mybatis3/.project
+/mybatis-generator-systests-mybatis3/.settings
+/mybatis-generator-systests-mybatis3/target
+
+# /mybatis-generator-systests-mybatis3-java8/
+/mybatis-generator-systests-mybatis3-java8/.classpath
+/mybatis-generator-systests-mybatis3-java8/.project
+/mybatis-generator-systests-mybatis3-java8/.settings
+/mybatis-generator-systests-mybatis3-java8/target
+
+# /mybatis-generator-systests-ibatis2-java2/
+/mybatis-generator-systests-ibatis2-java2/.classpath
+/mybatis-generator-systests-ibatis2-java2/.project
+/mybatis-generator-systests-ibatis2-java2/.settings
+/mybatis-generator-systests-ibatis2-java2/target
+
+# /mybatis-generator-systests-ibatis2-java5/
+/mybatis-generator-systests-ibatis2-java5/.classpath
+/mybatis-generator-systests-ibatis2-java5/.project
+/mybatis-generator-systests-ibatis2-java5/.settings
+/mybatis-generator-systests-ibatis2-java5/target
+
+# /mybatis-generator-systests-domtests/
+/mybatis-generator-systests-domtests/.classpath
+/mybatis-generator-systests-domtests/.project
+/mybatis-generator-systests-domtests/.settings
+/mybatis-generator-systests-domtests/target
+/.project
+.idea
+*.iml
+/.mvn/wrapper/maven-wrapper.jar
+**/.DS_Store
+
+ *.ipr
+*.iws
+*.iml
+.gradle/*
+.classpath
+build/*
+classes/*
+out
+.gradle*
+.idea
+.idea/*
+.idea*
+.classpath
+.project
+.settings/
+*.log
+*.log.*
+*.bak
+bin/
+data/*
+*workspace.xml
