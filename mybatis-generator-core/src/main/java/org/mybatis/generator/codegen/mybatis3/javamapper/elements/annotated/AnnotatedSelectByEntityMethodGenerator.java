@@ -119,7 +119,7 @@ public class AnnotatedSelectByEntityMethodGenerator extends SelectByEntityMethod
         method.addAnnotation("\"#end\",");
         method.addAnnotation("})"); //$NON-NLS-1$
 
-        addAnnotatedResults(interfaze, method);
+//        addAnnotatedResults(interfaze, method);
     }
 
     private void addAnnotatedResults(Interface interfaze, Method method) {

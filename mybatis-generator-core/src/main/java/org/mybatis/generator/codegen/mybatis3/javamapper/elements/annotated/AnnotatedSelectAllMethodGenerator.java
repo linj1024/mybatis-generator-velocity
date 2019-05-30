@@ -104,7 +104,7 @@ public class AnnotatedSelectAllMethodGenerator extends SelectAllMethodGenerator 
 
         method.addAnnotation("})"); //$NON-NLS-1$
 
-        addAnnotatedResults(interfaze, method);
+//        addAnnotatedResults(interfaze, method);
     }
 
     private void addAnnotatedResults(Interface interfaze, Method method) {

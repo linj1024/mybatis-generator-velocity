@@ -113,16 +113,16 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
 
         method.addAnnotation("})"); //$NON-NLS-1$
 
-        if (useResultMapIfAvailable) {
-            if (introspectedTable.getRules().generateBaseResultMap()
-                    || introspectedTable.getRules().generateResultMapWithBLOBs()) {
-                addResultMapAnnotation(method);
-            } else {
-                addAnnotatedResults(interfaze, method);
-            }
-        } else {
-            addAnnotatedResults(interfaze, method);
-        }
+//        if (useResultMapIfAvailable) {
+//            if (introspectedTable.getRules().generateBaseResultMap()
+//                    || introspectedTable.getRules().generateResultMapWithBLOBs()) {
+//                addResultMapAnnotation(method);
+//            } else {
+//                addAnnotatedResults(interfaze, method);
+//            }
+//        } else {
+//            addAnnotatedResults(interfaze, method);
+//        }
     }
 
     private void addResultMapAnnotation(Method method) {

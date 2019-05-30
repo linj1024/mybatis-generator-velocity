@@ -60,7 +60,7 @@ public class AnnotatedInsertBatchMethodGenerator extends InsertBatchMethodGenera
         insertClause.setLength(0);
         javaIndent(insertClause, 1);
         
-        insertClause.append("\" #trim('(' '' ')' ',')\","); //$NON-NLS-1$
+        insertClause.append("\"(\","); //$NON-NLS-1$
         method.addAnnotation(insertClause.toString());
         insertClause.setLength(0);
         javaIndent(insertClause, 1);
@@ -71,11 +71,11 @@ public class AnnotatedInsertBatchMethodGenerator extends InsertBatchMethodGenera
         valuesClause.setLength(0);
         javaIndent(valuesClause, 1);
         
-        valuesClause.append("\" #repeat($!_parameter.records $item ',' '' '') \","); //$NON-NLS-1$
+        valuesClause.append("\"#repeat($!_parameter.records $item ',' '' '') \","); //$NON-NLS-1$
         valuesClauses.add(valuesClause.toString());
         valuesClause.setLength(0);
         javaIndent(valuesClause, 1);
-        valuesClause.append("\" ( \","); //$NON-NLS-1$
+        valuesClause.append("\"( \","); //$NON-NLS-1$
         valuesClauses.add(valuesClause.toString());
         valuesClause.setLength(0);
         javaIndent(valuesClause, 1);
@@ -86,36 +86,36 @@ public class AnnotatedInsertBatchMethodGenerator extends InsertBatchMethodGenera
 //        boolean hasFields = false;
         while (iter.hasNext()) {
             IntrospectedColumn introspectedColumn = iter.next();
-            
-            insertClause.append("\"      #if($_parameter.");
-            insertClause.append(introspectedColumn.getJavaProperty(null));
-            insertClause.append(")");
-            insertClause.append(escapeStringForJava(getEscapedColumnName(introspectedColumn))).append(",");
-            insertClause.append("#end\",");
+            insertClause.append("\" ");
+            insertClause.append(escapeStringForJava(getEscapedColumnName(introspectedColumn)));
+            if(iter.hasNext()) {
+                insertClause.append(",");
+            }
+            insertClause.append("\",");
             method.addAnnotation(insertClause.toString());
             insertClause.setLength(0);
             javaIndent(insertClause, 1);
             
-            
-            valuesClause.append("\"      #if($_parameter.");
-            valuesClause.append(introspectedColumn.getJavaProperty(null));
-            valuesClause.append(")");
-            valuesClause.append(getParameterClause(introspectedColumn)).append(",");
-            valuesClause.append("#end\",");
+            valuesClause.append("\" ");
+            valuesClause.append(getParameterClause(introspectedColumn,"item."));
+            if(iter.hasNext()) {
+                valuesClause.append(",");
+            }
+            valuesClause.append("\",");
             valuesClauses.add(valuesClause.toString());
             valuesClause.setLength(0);
             javaIndent(valuesClause, 1);
         }
         
-        valuesClause.append("\" ) \","); //$NON-NLS-1$
+        valuesClause.append("\") \","); //$NON-NLS-1$
         valuesClauses.add(valuesClause.toString());
         valuesClause.setLength(0);
         javaIndent(valuesClause, 1);
 
-        insertClause.append("\" #end\",");
+        insertClause.append("\")\",");
         method.addAnnotation(insertClause.toString());
         
-        valuesClause.append("\" #end\",");
+        valuesClause.append("\"#end\"");
         valuesClauses.add(valuesClause.toString());
         for (String clause : valuesClauses) {
             method.addAnnotation(clause);
