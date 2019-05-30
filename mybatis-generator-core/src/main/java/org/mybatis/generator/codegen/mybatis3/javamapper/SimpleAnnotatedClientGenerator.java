@@ -19,8 +19,10 @@ import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedDeleteByPrimaryKeyMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedInsertBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedInsertMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedSelectAllMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedSelectByEntityMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedSelectByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.annotated.AnnotatedUpdateByPrimaryKeyWithoutBLOBsMethodGenerator;
 
@@ -52,6 +54,14 @@ public class SimpleAnnotatedClientGenerator extends SimpleJavaClientGenerator {
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
+    
+    @Override
+    protected void addInsertBatchMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateInsert()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedInsertBatchMethodGenerator(true);
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
 
     @Override
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {
@@ -67,7 +77,14 @@ public class SimpleAnnotatedClientGenerator extends SimpleJavaClientGenerator {
         AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedSelectAllMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
-
+    
+    @Override
+    protected void addSelectByEntityMethod(Interface interfaze) {
+        AbstractJavaMapperMethodGenerator methodGenerator = new AnnotatedSelectByEntityMethodGenerator();
+        initializeAndExecuteGenerator(methodGenerator, interfaze);
+    }
+    
+    
     @Override
     protected void addUpdateByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateUpdateByPrimaryKeySelective()) {

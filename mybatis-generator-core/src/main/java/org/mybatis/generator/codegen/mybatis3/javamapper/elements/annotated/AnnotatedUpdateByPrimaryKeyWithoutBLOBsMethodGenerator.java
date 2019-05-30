@@ -58,7 +58,10 @@ public class AnnotatedUpdateByPrimaryKeyWithoutBLOBsMethodGenerator
         // set up for first column
         sb.setLength(0);
         javaIndent(sb, 1);
-        sb.append("\"set "); //$NON-NLS-1$
+        sb.append("\"#mset()\","); //$NON-NLS-1$
+        method.addAnnotation(sb.toString());
+        sb.setLength(0);
+        javaIndent(sb, 1);
 
         Iterator<IntrospectedColumn> iter;
         if (isSimple) {
@@ -72,24 +75,23 @@ public class AnnotatedUpdateByPrimaryKeyWithoutBLOBsMethodGenerator
         while (iter.hasNext()) {
             IntrospectedColumn introspectedColumn = iter.next();
 
+            sb.append("\"      #if($_parameter.");
+            sb.append(introspectedColumn.getJavaProperty(null));
+            sb.append(")");
             sb.append(escapeStringForJava(getEscapedColumnName(introspectedColumn)));
-            sb.append(" = "); //$NON-NLS-1$
+            sb.append(" = ");
             sb.append(getParameterClause(introspectedColumn));
-
-            if (iter.hasNext()) {
-                sb.append(',');
-            }
-
-            sb.append("\","); //$NON-NLS-1$
+            sb.append(" ,#end\",");
+            
             method.addAnnotation(sb.toString());
-
-            // set up for the next column
-            if (iter.hasNext()) {
-                sb.setLength(0);
-                javaIndent(sb, 1);
-                sb.append("  \""); //$NON-NLS-1$
-            }
+            sb.setLength(0);
+            javaIndent(sb, 1);
         }
+        
+        sb.append("\"#end\",");
+        method.addAnnotation(sb.toString());
+        sb.setLength(0);
+        javaIndent(sb, 1);
 
         boolean and = false;
         iter = introspectedTable.getPrimaryKeyColumns().iterator();

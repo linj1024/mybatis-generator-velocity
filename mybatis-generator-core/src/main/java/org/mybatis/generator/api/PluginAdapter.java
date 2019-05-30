@@ -144,6 +144,13 @@ public abstract class PluginAdapter implements Plugin {
             IntrospectedTable introspectedTable) {
         return true;
     }
+    
+    @Override
+    public boolean clientInsertBatchMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        return true;
+    }
+    
 
     @Override
     public boolean clientGenerated(Interface interfaze,
@@ -467,6 +474,13 @@ public abstract class PluginAdapter implements Plugin {
             Interface interfaze, IntrospectedTable introspectedTable) {
         return true;
     }
+    
+    @Override
+    public boolean clientSelectByEntityMethodGenerated(Method method,
+            Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+    
 
     @Override
     public boolean sqlMapSelectAllElementGenerated(XmlElement element,

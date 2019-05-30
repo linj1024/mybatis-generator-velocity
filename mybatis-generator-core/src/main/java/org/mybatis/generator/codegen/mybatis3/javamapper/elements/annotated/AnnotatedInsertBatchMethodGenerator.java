@@ -29,6 +29,7 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGenerator;
 import org.mybatis.generator.config.GeneratedKey;
 
@@ -36,9 +37,9 @@ import org.mybatis.generator.config.GeneratedKey;
  * 
  * @author Jeff Butler
  */
-public class AnnotatedInsertMethodGenerator extends InsertMethodGenerator {
+public class AnnotatedInsertBatchMethodGenerator extends InsertBatchMethodGenerator {
 
-    public AnnotatedInsertMethodGenerator(boolean isSimple) {
+    public AnnotatedInsertBatchMethodGenerator(boolean isSimple) {
         super(isSimple);
     }
 
@@ -65,7 +66,16 @@ public class AnnotatedInsertMethodGenerator extends InsertMethodGenerator {
         javaIndent(insertClause, 1);
 
         List<String> valuesClauses = new ArrayList<>();
-        valuesClause.append("\" #trim('values (' '' ')' ',')\","); //$NON-NLS-1$
+        valuesClause.append("\" values \","); //$NON-NLS-1$
+        valuesClauses.add(valuesClause.toString());
+        valuesClause.setLength(0);
+        javaIndent(valuesClause, 1);
+        
+        valuesClause.append("\" #repeat($!_parameter.records $item ',' '' '') \","); //$NON-NLS-1$
+        valuesClauses.add(valuesClause.toString());
+        valuesClause.setLength(0);
+        javaIndent(valuesClause, 1);
+        valuesClause.append("\" ( \","); //$NON-NLS-1$
         valuesClauses.add(valuesClause.toString());
         valuesClause.setLength(0);
         javaIndent(valuesClause, 1);
@@ -95,44 +105,12 @@ public class AnnotatedInsertMethodGenerator extends InsertMethodGenerator {
             valuesClauses.add(valuesClause.toString());
             valuesClause.setLength(0);
             javaIndent(valuesClause, 1);
-            
-//            hasFields = true;
-//            if (iter.hasNext()) {
-//                insertClause.append(", "); //$NON-NLS-1$
-//                valuesClause.append(", "); //$NON-NLS-1$
-//            }
-//
-//            if (valuesClause.length() > 60) {
-//                if (!iter.hasNext()) {
-//                    insertClause.append(')');
-//                    valuesClause.append(')');
-//                }
-//                insertClause.append("\","); //$NON-NLS-1$
-//                valuesClause.append('\"');
-//                if (iter.hasNext()) {
-//                    valuesClause.append(',');
-//                }
-//
-//                method.addAnnotation(insertClause.toString());
-//                insertClause.setLength(0);
-//                javaIndent(insertClause, 1);
-//                insertClause.append('\"');
-//
-//                valuesClauses.add(valuesClause.toString());
-//                valuesClause.setLength(0);
-//                javaIndent(valuesClause, 1);
-//                valuesClause.append('\"');
-//                hasFields = false;
-//            }
         }
-
-//        if (hasFields) {
-//            insertClause.append(")\","); //$NON-NLS-1$
-//            method.addAnnotation(insertClause.toString());
-//
-//            valuesClause.append(")\""); //$NON-NLS-1$
-//            valuesClauses.add(valuesClause.toString());
-//        }
+        
+        valuesClause.append("\" ) \","); //$NON-NLS-1$
+        valuesClauses.add(valuesClause.toString());
+        valuesClause.setLength(0);
+        javaIndent(valuesClause, 1);
 
         insertClause.append("\" #end\",");
         method.addAnnotation(insertClause.toString());
@@ -145,18 +123,18 @@ public class AnnotatedInsertMethodGenerator extends InsertMethodGenerator {
 
         method.addAnnotation("})"); //$NON-NLS-1$
 
-        GeneratedKey gk = introspectedTable.getGeneratedKey();
-        if (gk != null) {
-            addGeneratedKeyAnnotation(method, gk);
-        }
+//        GeneratedKey gk = introspectedTable.getGeneratedKey();
+//        if (gk != null) {
+//            addGeneratedKeyAnnotation(method, gk);
+//        }
     }
 
     @Override
     public void addExtraImports(Interface interfaze) {
-        GeneratedKey gk = introspectedTable.getGeneratedKey();
-        if (gk != null) {
-            addGeneratedKeyImports(interfaze, gk);
-        }
+//        GeneratedKey gk = introspectedTable.getGeneratedKey();
+//        if (gk != null) {
+//            addGeneratedKeyImports(interfaze, gk);
+//        }
         interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Insert")); //$NON-NLS-1$
     }
 }

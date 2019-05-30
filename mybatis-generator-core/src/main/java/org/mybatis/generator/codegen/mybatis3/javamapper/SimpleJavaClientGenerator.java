@@ -30,8 +30,10 @@ import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByPrimaryKeyMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectAllMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByEntityMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByPrimaryKeyWithoutBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.SimpleXMLMapperGenerator;
@@ -79,8 +81,10 @@ public class SimpleJavaClientGenerator extends AbstractJavaClientGenerator {
 
         addDeleteByPrimaryKeyMethod(interfaze);
         addInsertMethod(interfaze);
+        addInsertBatchMethod(interfaze);
         addSelectByPrimaryKeyMethod(interfaze);
-        addSelectAllMethod(interfaze);
+//        addSelectAllMethod(interfaze);
+        addSelectByEntityMethod(interfaze);
         addUpdateByPrimaryKeyMethod(interfaze);
 
         List<CompilationUnit> answer = new ArrayList<>();
@@ -109,6 +113,13 @@ public class SimpleJavaClientGenerator extends AbstractJavaClientGenerator {
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }
+    
+    protected void addInsertBatchMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateInsert()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new InsertBatchMethodGenerator(true);
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
 
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
@@ -119,6 +130,11 @@ public class SimpleJavaClientGenerator extends AbstractJavaClientGenerator {
 
     protected void addSelectAllMethod(Interface interfaze) {
         AbstractJavaMapperMethodGenerator methodGenerator = new SelectAllMethodGenerator();
+        initializeAndExecuteGenerator(methodGenerator, interfaze);
+    }
+    
+    protected void addSelectByEntityMethod(Interface interfaze) {
+        AbstractJavaMapperMethodGenerator methodGenerator = new SelectByEntityMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
 

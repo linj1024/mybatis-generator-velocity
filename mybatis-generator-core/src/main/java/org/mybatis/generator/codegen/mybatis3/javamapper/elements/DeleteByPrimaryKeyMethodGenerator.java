@@ -61,7 +61,7 @@ public class DeleteByPrimaryKeyMethodGenerator extends
             // for MyBatis
             List<IntrospectedColumn> introspectedColumns = introspectedTable
                     .getPrimaryKeyColumns();
-            boolean annotate = introspectedColumns.size() > 1;
+            boolean annotate = introspectedColumns.size() >= 1;
             if (annotate) {
                 importedTypes.add(new FullyQualifiedJavaType(
                         "org.apache.ibatis.annotations.Param")); //$NON-NLS-1$

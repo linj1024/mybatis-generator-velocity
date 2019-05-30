@@ -376,6 +376,9 @@ public interface Plugin {
      */
     boolean clientInsertMethodGenerated(Method method, Interface interfaze,
             IntrospectedTable introspectedTable);
+    
+    boolean clientInsertBatchMethodGenerated(Method method, Interface interfaze,
+                                        IntrospectedTable introspectedTable);
 
     /**
      * This method is called when the insert selective method has been generated
@@ -608,6 +611,9 @@ public interface Plugin {
      */
     boolean clientSelectAllMethodGenerated(Method method,
             Interface interfaze, IntrospectedTable introspectedTable);
+    
+    boolean clientSelectByEntityMethodGenerated(Method method,
+                                           Interface interfaze, IntrospectedTable introspectedTable);
 
     /**
      * This method is called after the field is generated for a specific column

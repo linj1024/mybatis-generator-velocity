@@ -607,6 +607,22 @@ public final class PluginAggregator implements Plugin {
 
         return rc;
     }
+    
+    @Override
+    public boolean clientInsertBatchMethodGenerated(Method method, Interface interfaze,
+            IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.clientInsertBatchMethodGenerated(method, interfaze,
+                    introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
 
     @Override
     public boolean clientGenerated(Interface interfaze,
@@ -630,6 +646,22 @@ public final class PluginAggregator implements Plugin {
 
         for (Plugin plugin : plugins) {
             if (!plugin.clientSelectAllMethodGenerated(method,
+                    interfaze, introspectedTable)) {
+                rc = false;
+                break;
+            }
+        }
+
+        return rc;
+    }
+    
+    @Override
+    public boolean clientSelectByEntityMethodGenerated(Method method,
+            Interface interfaze, IntrospectedTable introspectedTable) {
+        boolean rc = true;
+
+        for (Plugin plugin : plugins) {
+            if (!plugin.clientSelectByEntityMethodGenerated(method,
                     interfaze, introspectedTable)) {
                 rc = false;
                 break;
