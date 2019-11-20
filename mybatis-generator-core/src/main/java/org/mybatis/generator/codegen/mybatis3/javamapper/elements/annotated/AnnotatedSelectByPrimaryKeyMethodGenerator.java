@@ -105,11 +105,17 @@ public class AnnotatedSelectByPrimaryKeyMethodGenerator extends SelectByPrimaryK
             sb.append(" = "); //$NON-NLS-1$
             sb.append(getParameterClause(introspectedColumn));
             sb.append('\"');
-            if (iter.hasNext()) {
+//            if (iter.hasNext()) {
                 sb.append(',');
-            }
+//            }
             method.addAnnotation(sb.toString());
         }
+        
+        sb.setLength(0);
+        javaIndent(sb, 1);
+        sb.append("\"and is_delete = 0 \"");
+        method.addAnnotation(sb.toString());
+        
 
         method.addAnnotation("})"); //$NON-NLS-1$
 
